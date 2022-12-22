@@ -1,29 +1,19 @@
-    <script>
-        function tableOperations() {
-            return {
-                show: false,
-                blogs: [],
+<script>
+    function tableOperations() {
+        return {
+            show: false,
+            blogs: [],
 
-                init() {
-                    this.blogs =  [{
-                        id: 1,
-                        title: 'test',
-                        description: 'value'
-                    }, {
-                        id: 2,
-                        title: 'test',
-                        description: 'value'
-                    }]
-                },
+            init() {
+                this.blogs =
+                    fetch("http://127.0.0.1:8000/blogs/")
+                        .then((response) => response.json())
+                        .then((data) => {
+                            this.blogs = data.blogs;
+                        });
+            },
 
-               async addBlog() {
-                    let response = await fetch('')
-                   let message = response.json()
-                   if(response.status === 200) {
-                       this.blogs.push()
-                   }
-                }
-            }
         }
+    }
 
-    </script>
+</script>
