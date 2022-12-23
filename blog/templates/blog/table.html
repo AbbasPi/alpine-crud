@@ -1,6 +1,6 @@
 <div x-data="tableOperations()">
-{% include 'blog/alert.html' %}
-    <table x-init="$watch('blogs', (value)=> console.log(value))" class="table">
+    {% include 'blog/alert.html' %}
+    <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -20,10 +20,14 @@
                     <input type="text" name="description" x-model="blog.description">
                 </td>
                 <td>
-                    <button @click="editBlog(blog)" type="button" class="btn btn-primary">Edit</button>
+                    <button @click="editBlog(blog)" type="button" class="btn btn-success">Save Edit</button>
                 </td>
                 <td>
-                    <button @click="deleteBlog(blog.id)" type="button" class="btn btn-danger">Delete</button>
+
+                    <button @click="show = blog.id" type="button" class="btn btn-danger">Delete</button>
+                    <div x-show="show === blog.id">
+                        {% include 'blog/modal.html' %}
+                    </div>
                 </td>
             </tr>
         </template>

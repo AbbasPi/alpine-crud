@@ -1,6 +1,7 @@
 <script>
     function tableOperations() {
         return {
+            show: null,
             blogs: [],
             title: null,
             description: null,
@@ -19,12 +20,6 @@
             },
             init() {
                 this.getBlogs()
-            },
-            pushData(title, description) {
-                this.blogs.push({
-                    title: title,
-                    description: description
-                })
             },
 
             addBlog() {
@@ -56,6 +51,7 @@
             },
             deleteBlog(id) {
                 this.blogs = this.blogs.filter((blog) => blog.id !== id);
+                this.show = id
                 fetch(`http://127.0.0.1:8000/delete/${id}`, {
                     method: "DELETE",
                     headers: {
