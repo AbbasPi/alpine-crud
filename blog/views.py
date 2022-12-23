@@ -33,3 +33,11 @@ def create_blog(request):
 def delete_blog(request, id):
     Blog.objects.get(pk=id).delete()
     return JsonResponse({'status': 'success'})
+
+
+def edit_blog(request, id):
+    body = json.loads(request.body.decode('utf-8'))
+    title = body['title']
+    description = body['description']
+    Blog.objects.filter(pk=id).update(title=title, description=description)
+    return JsonResponse({'status': 'success'})

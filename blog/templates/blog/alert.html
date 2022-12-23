@@ -1,0 +1,4 @@
+ <div x-show="response_status.show" :class="response_status.ok ? 'alert alert-success' : 'alert alert-danger'"
+         role="alert">
+        <p x-text="response_status.message"></p>
+    </div>

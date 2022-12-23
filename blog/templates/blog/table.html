@@ -1,24 +1,31 @@
-<table x-data="tableOperations()" class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-    </tr>
-    </thead>
-    <template x-for="(blog, index) in blogs">
-        <tr :key="blog.id">
-            <th x-text="index+1" scope="row"></th>
-            <td x-text="blog.title"></td>
-            <td x-text="blog.description"></td>
-            <td>
-                <button type="button" class="btn btn-primary">Edit</button>
-            </td>
-            <td>
-                <button @click="deleteBlog(blog.id)" type="button" class="btn btn-danger">Delete</button>
-            </td>
+<div x-data="tableOperations()">
+{% include 'blog/alert.html' %}
+    <table x-init="$watch('blogs', (value)=> console.log(value))" class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
-    </template>
-</table>
+        </thead>
+        <template x-for="(blog, index) in blogs">
+            <tr :key="blog.id">
+                <th x-text="index+1" scope="row"></th>
+                <td>
+                    <input type="text" name="title" x-model="blog.title">
+                </td>
+                <td>
+                    <input type="text" name="description" x-model="blog.description">
+                </td>
+                <td>
+                    <button @click="editBlog(blog)" type="button" class="btn btn-primary">Edit</button>
+                </td>
+                <td>
+                    <button @click="deleteBlog(blog.id)" type="button" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </template>
+    </table>
+</div>

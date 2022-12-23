@@ -1,4 +1,4 @@
-<div x-data="formOperations()">
+<div x-data="tableOperations()">
     <div class="form-group mt-2">
         <label for="title">Title</label>
         <input
@@ -14,7 +14,6 @@
                 id="description"
                 rows="3"
         ></textarea>
-        <p x-text="status"></p>
         <input
                 @click="addBlog()"
                 class="btn btn-primary mt-1"
@@ -22,4 +21,5 @@
                 value="Submit"
         />
     </div>
+    {% include 'blog/alert.html' %}
 </div>
