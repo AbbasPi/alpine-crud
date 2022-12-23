@@ -17,7 +17,7 @@ def index(request):
 
 
 def get_blogs(request):
-    blogs = Blog.objects.all().values('title', 'description')
+    blogs = Blog.objects.all().values('id', 'title', 'description')
     return JsonResponse({'blogs': list(blogs)}, safe=False)
 
 
@@ -27,4 +27,9 @@ def create_blog(request):
     description = body['description']
     blog = Blog(title=title, description=description)
     blog.save()
+    return JsonResponse({'status': 'success'})
+
+
+def delete_blog(request, id):
+    Blog.objects.get(pk=id).delete()
     return JsonResponse({'status': 'success'})

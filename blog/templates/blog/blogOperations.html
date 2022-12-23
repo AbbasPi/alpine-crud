@@ -12,8 +12,24 @@
                             this.blogs = data.blogs;
                         });
             },
+
+            deleteBlog(id) {
+                console.log(id);
+                this.blogs = this.blogs.filter((blog) => blog.id !== id);
+                fetch(`http://127.0.0.1:8000/delete/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.head.querySelector(
+                            "meta[name=csrf-token]"
+                        ).content,
+                    },
+                })
+                    .then((response) => response.json())
+            },
         }
     }
+
 
     function formOperations() {
         return {
