@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -17,3 +19,12 @@ def index(request):
 def get_blogs(request):
     blogs = Blog.objects.all().values('title', 'description')
     return JsonResponse({'blogs': list(blogs)}, safe=False)
+
+
+def create_blog(request):
+    body = json.loads(request.body.decode('utf-8'))
+    title = body['title']
+    description = body['description']
+    blog = Blog(title=title, description=description)
+    blog.save()
+    return JsonResponse({'status': 'success'})

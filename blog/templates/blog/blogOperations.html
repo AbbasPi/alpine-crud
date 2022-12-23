@@ -1,0 +1,51 @@
+<script>
+    function tableOperations() {
+        return {
+            show: false,
+            blogs: [],
+
+            init() {
+                this.blogs =
+                    fetch("http://127.0.0.1:8000/blogs/")
+                        .then((response) => response.json())
+                        .then((data) => {
+                            this.blogs = data.blogs;
+                        });
+            },
+        }
+    }
+
+    function formOperations() {
+        return {
+            title: null,
+            description: null,
+            status: "",
+            async addBlog() {
+                const json = JSON.stringify({
+                    title: this.title,
+                    description: this.description,
+                });
+                const response = await fetch("http://127.0.0.1:8000/create/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.head.querySelector(
+                            "meta[name=csrf-token]"
+                        ).content,
+                    },
+                    body: json,
+                });
+
+                if (response.status === 200) {
+                    this.status = "Success";
+                    this.title = null;
+                    this.description = null
+                } else {
+                    this.status = "Failed";
+
+                }
+            },
+        };
+    }
+
+</script>

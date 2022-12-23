@@ -1,0 +1,25 @@
+<div x-data="formOperations()">
+    <div class="form-group mt-2">
+        <label for="title">Title</label>
+        <input
+                x-model="title"
+                class="form-control"
+                type="text"
+                id="title"
+        />
+        <label for="description">Description</label>
+        <textarea
+                x-model="description"
+                class="form-control"
+                id="description"
+                rows="3"
+        ></textarea>
+        <p x-text="status"></p>
+        <input
+                @click="addBlog()"
+                class="btn btn-primary mt-1"
+                type="submit"
+                value="Submit"
+        />
+    </div>
+</div>

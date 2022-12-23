@@ -1,10 +1,15 @@
 <html lang="en">
 {% include 'blog/head.html' %}
 <body>
-{% load crispy_forms_filters %}
-<button>delete all</button>
-{% include 'blog/table.html' %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        {% include 'blog/create_blog.html' %}
+        {% include 'blog/table.html' %}
+    </div>
+</div>
+
 {% include 'blog/scripts.html' %}
-{% include 'blog/tableOperations.html' %}
+{% include 'blog/blogOperations.html' %}
+
 </body>
 </html>

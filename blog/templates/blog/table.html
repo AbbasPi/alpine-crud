@@ -1,24 +1,24 @@
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-
-        <table x-data="tableOperations()" class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <template x-for="(blog, index) in blogs">
-                <tr :key="blog.id">
-                    <th x-text="index+1" scope="row"></th>
-                    <td x-text="blog.title"></td>
-                    <td x-text="blog.description"></td>
-                    <td>Edit - Delete</td>
-                </tr>
-            </template>
-        </table>
-    </div>
-
-</div>
+<table x-data="tableOperations()" class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <template x-for="(blog, index) in blogs">
+        <tr :key="blog.id">
+            <th x-text="index+1" scope="row"></th>
+            <td x-text="blog.title"></td>
+            <td x-text="blog.description"></td>
+            <td>
+                <button type="button" class="btn btn-primary">Edit</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </template>
+</table>
